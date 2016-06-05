@@ -17,8 +17,10 @@ if(isset($_GET['lastname']) && isset($_GET['code']) && isset($_GET['contacttype'
     if(count($operations)>0){
         // agregar el nuevo relative
         $contactData = $_GET["email"];
-        if(count($_GET["email"]) == 0)
+        if(count($_GET["email"]) == 0){
+            echo 'cell';
             $contactData = $_GET["celphone"] . '';
+        }
         echo $contactData . '-';
         $query = "INSERT INTO relatives (contactTypeId, contactData) VALUES (".$_GET['contacttype'].",'".
                 $contactData."')";
