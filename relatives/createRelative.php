@@ -16,9 +16,11 @@ if(isset($_GET['lastname']) && isset($_GET['code']) && isset($_GET['contacttype'
     }
     if(count($operations)>0){
         // agregar el nuevo relative
-        echo '-' . (count($_GET["email"]) > 0 ? $_GET["email"] : $_GET["celphone"]) . '-';
+        $contactData = $_GET["email"];
+        if(count($_GET["email"]) == 0)
+            $contactData = $_GET["celphone"];
         $query = "INSERT INTO relatives (contactTypeId, contactData) VALUES (".$_GET['contacttype'].",'".
-                (count($_GET["email"]) > 0 ? $_GET["email"] : $_GET["celphone"])."')";
+                $contactData."')";
         $result = mysql_query($query,$link) or die('Errant query:  '.$query); 
         // actualiza operations con el relative
         $query = "UPDATE operations SET relativeid = " .mysql_insert_id(). " WHERE id = " . $operations[0]['operation']['id'];
