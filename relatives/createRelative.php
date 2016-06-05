@@ -20,7 +20,7 @@ if(isset($_GET['lastname']) && isset($_GET['code']) && isset($_GET['contacttype'
                 (isset($_GET["email"]) ? $_GET["email"] : $_GET["celphone"])."')";
         $result = mysql_query($query,$link) or die('Errant query:  '.$query); 
         // actualiza operations con el relative
-        $query = "UPDATE operations SET relativeid = " .mysql_insert_id(). " WHERE id = " . $operations[0]->operation.id;
+        $query = "UPDATE operations SET relativeid = " .mysql_insert_id(). " WHERE id = " . $operations[0]['operation']['id'];
         echo json_encode(array('status'=>'success'));    
     }
     else{
