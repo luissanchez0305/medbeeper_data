@@ -12,7 +12,7 @@ if(isset($_GET['lastname']) && isset($_GET['code']) && isset($_GET['contacttype'
     
     $operations = array();
     while($operation = mysql_fetch_assoc($result)) {
-        $operations[] = array('operation'=>$operation);    
+        $operations[] = array($operation);    
     }
     if(count($operations)>0){
         // agregar el nuevo relative
@@ -21,7 +21,7 @@ if(isset($_GET['lastname']) && isset($_GET['code']) && isset($_GET['contacttype'
         $result = mysql_query($query,$link) or die('Errant query:  '.$query);  */
         // actualiza operations con el relative
         /*$query = "UPDATE operations SET relativeid = " .mysql_insert_id(). " WHERE id = " . $operations[0]->operation.id;*/
-        print_r($operations[0].operation);
+        print_r($operations[0]);
         echo json_encode(array('status'=>'success'));    
     }
     else{
