@@ -19,7 +19,7 @@ if(isset($_GET['lastname']) && isset($_GET['code']) && isset($_GET['contacttype'
         $query = "INSERT INTO relatives (contactTypeId, contactData) VALUES (".$_GET['contacttype'].",'".
                 (isset($_GET["email"]) ? $_GET["email"] : $_GET["celphone"])."')";
         $result = mysql_query($query,$link) or die('Errant query:  '.$query); 
-        print_r($result);
+        echo mysql_insert_id();
         // actualiza operations con el relative
         $query = "UPDATE operations SET relativeid = " .mysql_insert_id(). " WHERE id = " . $operations[0]['operation']['id'];
         echo json_encode(array('status'=>'success'));    
