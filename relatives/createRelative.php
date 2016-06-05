@@ -25,3 +25,6 @@ if(isset($_GET['lastname']) && isset($_GET['code']) && isset($_GET['contacttype'
     }
     echo json_encode(array('status'=>'fail'));        
 }
+ else {
+     echo 'no data';
+ }
