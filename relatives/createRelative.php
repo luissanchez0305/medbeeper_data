@@ -21,7 +21,7 @@ if(isset($_GET['lastname']) && isset($_GET['code']) && isset($_GET['contacttype'
         $result = mysql_query($query,$link) or die('Errant query:  '.$query);  */
         // actualiza operations con el relative
         /*$query = "UPDATE operations SET relativeid = " .mysql_insert_id(). " WHERE id = " . $operations[0]->operation.id;*/
-        
+        print_r($operations);
         echo json_encode(array('status'=>'success'));    
     }
     else{
