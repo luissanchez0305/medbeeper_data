@@ -22,7 +22,15 @@ if(isset($_GET['lastname']) && isset($_GET['code']) && isset($_GET['contacttype'
         // actualiza operations con el relative
         $query = "UPDATE operations SET relativeid = " .mysql_insert_id(). " WHERE id = " . $operations[0]['operation']['id'];
         mysql_query($query,$link) or die('Errant query:  '.$query); 
-        echo json_encode(array('status'=>'success'));
+        
+        $query = "SELECT name, lastname FROM patients WHERE id = " .$operations[0]['operation']['patientid'];
+        $result = mysql_query($query,$link) or die('Errant query:  '.$query); 
+        
+        $patients = array();
+        while($patient = mysql_fetch_assoc($result)) {
+            $patients[] = array('patient'=>$patient);    
+        }
+        echo json_encode(array('status'=>'success', 'patientname'=>$patients[0]['patient']['name'] . ' ' . $patients[0]['patient']['lastname']));
     }
     else{
         echo json_encode(array('status'=>'fail'));     
