@@ -3,7 +3,8 @@ include_once "../helper.php";
 header('Content-type: application/json;charset=utf-8');
 header("access-control-allow-origin: *");
 
-if(isset($_GET['lastname']) && isset($_GET['code']) && isset($_GET['contacttype']) && isset($_GET["contactdata"])){  
+if(isset($_GET['lastname']) && isset($_GET['code']) && isset($_GET['contacttype']) && 
+        (isset($_GET["email"]) || isset($_GET["celphone"]))){  
     // primero revisar si el apellido y codigo son validos
     $query = "SELECT * FROM operations WHERE code = ".$_GET['code'] . 
             " AND patientid IN (SELECT id FROM patients WHERE lastname = '".$_GET['lastname']."')";
