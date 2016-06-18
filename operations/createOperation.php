@@ -6,6 +6,7 @@ header("access-control-allow-origin: *");
 if(isset($_GET['lastname']) && isset($_GET['doctorId'])){    
     $query = "INSERT INTO patients (name, lastname, doctorid) VALUES ('" . $_GET['name'] . "', '" . $_GET['lastname'] . "',".
             $_GET['doctorId'] . ")";
+    echo $query;
     $result = mysql_query($query,$link) or die('Errant query:  ' . $query); 
     
     $query = "INSERT INTO operations (patientid, doctorid, name, code) VALUES (" . mysql_insert_id() . ",".
