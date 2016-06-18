@@ -8,7 +8,7 @@ if(isset($_GET['lastname']) && isset($_GET['doctorId'])){
             $_GET['doctorId'] . ")";
     $result = mysql_query($query,$link) or die('Errant query:  ' . $query); 
     
-    $query = "INSERT INTO operations (patientid, name, code) VALUES (" . mysql_insert_id() . ",'".
+    $query = "INSERT INTO operations (patientid, relativeid, name, code) VALUES (" . mysql_insert_id() . ",null,'".
             $_GET['operationName'] . "','" . generateRandomString() . "')";
     $result = mysql_query($query,$link) or die('Errant query:  ' . $query); 
     
