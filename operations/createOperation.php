@@ -3,16 +3,13 @@ include_once "../helper.php";
 header('Content-type: application/json;charset=utf-8');
 header("access-control-allow-origin: *");
 
-echo $_GET['doctorId'] . " - " . $_GET['lastname'];
-
 if(isset($_GET['lastname']) && isset($_GET['doctorId'])){    
     $query = "INSERT INTO patients (name, lastname, doctorid) VALUES ('" . $_GET['name'] . "', '" . $_GET['lastname'] . "',".
             $_GET['doctorId'] . ")";
-    echo $query;
     $result = mysql_query($query,$link) or die('Errant query:  ' . $query); 
     
-    $query = "INSERT INTO operations (patientid, doctorid, name, code) VALUES (" . mysql_insert_id() . ",".
-            $_GET['doctorId'].",'" . $_GET['operationName'] . "','" . generateRandomString() . "')";
+    $query = "INSERT INTO operations (patientid, name, code) VALUES (" . mysql_insert_id() . ",'".
+            $_GET['operationName'] . "','" . generateRandomString() . "')";
     $result = mysql_query($query,$link) or die('Errant query:  ' . $query); 
     
     $query = "SELECT code FROM operations WHERE id = " . mysql_insert_id();
