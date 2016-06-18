@@ -3,6 +3,8 @@ include_once "../helper.php";
 header('Content-type: application/json;charset=utf-8');
 header("access-control-allow-origin: *");
 
+echo $_GET['doctorId'] . " - " . $_GET['lastname'];
+
 if(isset($_GET['lastname']) && isset($_GET['doctorId'])){    
     $query = "INSERT INTO patients (name, lastname, doctorid) VALUES ('" . $_GET['name'] . "', '" . $_GET['lastname'] . "',".
             $_GET['doctorId'] . ")";
