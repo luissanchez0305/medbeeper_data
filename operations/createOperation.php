@@ -19,7 +19,7 @@ if(isset($_GET['lastname']) && isset($_GET['doctorId'])){
     while($operation = mysql_fetch_assoc($result)) {
         $operations[] = array('operation'=>$operation);    
     }
-    echo json_encode(array('status'=>'success', 'code'=>$patients[0]['operation']['code']));
+    echo json_encode(array('status'=>'success', 'code'=>$operations[0]['operation']['code']));
      
 }
 
